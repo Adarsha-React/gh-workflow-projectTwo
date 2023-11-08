@@ -1,5 +1,5 @@
 name: Test and Deploy
-on: workflow_dispatch
+on: [push, workflow_dispatch]
 jobs:
   test-job:
     runs-on: ubuntu-latest
@@ -15,6 +15,7 @@ jobs:
       - name: Run Tests
         run: npm run test
   deploy-job:
+    needs: test-job
     runs-on: ubuntu-latest
     steps:
       - name: get code
